@@ -2,8 +2,8 @@ const cells = []
 const width  = 800
 const height = 800
 
-const cellWidth  = 40
-const cellHeight = 40
+const cellWidth  = 20
+const cellHeight = 20
 
 const cellRowAmount = width / cellWidth
 const cellColAmount = height / cellHeight
