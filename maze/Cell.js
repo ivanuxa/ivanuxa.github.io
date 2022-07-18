@@ -23,7 +23,6 @@ class Cell {
             context.fillStyle = "#e0e"
             context.fillRect(x, y, cellWidth, cellHeight)
         }
-        context.strokeStyle = "#fff"
         if (this.walls.top) DrawLine(x, y, x + cellWidth, y)
         if (this.walls.right) DrawLine(x + cellWidth, y, x + cellWidth, y + cellHeight)
         if (this.walls.bottom) DrawLine(x, y + cellHeight, x + cellWidth, y + cellHeight)
@@ -34,7 +33,6 @@ class Cell {
     Highlight() {
         let x = this.x * cellWidth
         let y = this.y * cellHeight
-        context.strokeStyle = "rgba(0, 0, 0, 0)"
         context.fillStyle = "#0e0"
         context.fillRect(x, y, cellWidth, cellHeight)
     }
@@ -55,6 +53,10 @@ class Cell {
         push(left)
         if (neighbours.length === 0) return null
         return neighbours[Math.floor(Math.random() * neighbours.length)]
+    }
+
+    toString() {
+        return `${this.x + cells.length * this.y}`
     }
 }
 

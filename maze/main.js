@@ -1,8 +1,16 @@
 window.onload = () => {
     Setup()
     let timer = setTimeout(function tick() {
-        if (Check()) clearTimeout(timer)
         Draw()
+        if (stack.length === 0) {
+            clearTimeout(timer)
+            for (let i = 0; i < cellRowAmount; ++i) {
+                for (let j = 0; j < cellColAmount; ++j) {
+                    cells[i][j].Show()
+                }
+            }
+            return
+        }
         timer = setTimeout(tick, 1000 / FPS)
     }, 1000 / FPS)
 }
@@ -14,8 +22,6 @@ function Setup() {
     
     context.fillStyle='#000'
     context.fillRect(0, 0, width, height)
-
-    context.strokeWidth = 4
 
     for (let i = 0; i < cellRowAmount; ++i) { // y
         cells[i] = []
@@ -44,8 +50,4 @@ function Draw() {
     } else if (stack.length > 0) {
         current = stack.pop()
     }
-}
-
-function Check() {
-    return current === cells[0][0] && cells[0][1].visited && cells[1][0].visited
 }
